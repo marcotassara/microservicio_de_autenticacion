@@ -18,7 +18,7 @@ public class JwtUtils {
     private String jwtSecret;
 
     @Value("${jwt.expiration.ms}")
-    private long jwtExpirationMs; // 👈 CAMBIO: Usamos 'long' para evitar desbordamientos
+    private long jwtExpirationMs; 
 
     /**
      * Genera un nuevo token JWT para un usuario.
@@ -29,7 +29,7 @@ public class JwtUtils {
     public String generateToken(Usuario usuario) {
         return Jwts.builder()
                 .setSubject(usuario.getEmail())
-                .claim("id", usuario.getId())
+                .claim("VendedorId", usuario.getVendedor_id())
                 .claim("rol", usuario.getRol().name())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
@@ -113,7 +113,7 @@ public class JwtUtils {
      * La clave es el sello secreto con el que firmamos nuestros tokens para asegurar su autenticidad.
      * @return La clave de firma.
      */
-    private Key getSigningKey() { // 👈 Renombrado de 'key()' para mayor claridad
+    private Key getSigningKey() { 
         byte[] keyBytes = jwtSecret.getBytes();
         return Keys.hmacShaKeyFor(keyBytes);
     }

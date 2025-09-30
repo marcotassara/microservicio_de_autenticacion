@@ -59,7 +59,7 @@ public class AuthService {
         // 4. Construimos la respuesta, como una carta de amor digital.
         AuthResponse response = new AuthResponse();
         response.setToken(token);
-        response.setIdUsuario(usuario.getId());
+        response.setIdUsuario(usuario.getVendedor_id());
         response.setRol(usuario.getRol().name());
         return response;
     }

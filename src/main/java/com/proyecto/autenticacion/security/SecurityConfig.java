@@ -33,6 +33,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 // Permitimos el acceso sin autenticación a nuestros endpoints de login y registro
                 .requestMatchers("/api/v1/auth/**").permitAll()
+                .requestMatchers("/api/v1/usuarios/**").permitAll()
                 // Cualquier otra petición debe ser autenticada
                 .anyRequest().authenticated()
             )
